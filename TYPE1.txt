@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Practical 10</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>#map { height: 600px; }</style>
+</head>
+<body>
+  <h2 style="text-align:center;">Leaflet Map Example</h2>
+  <div id="map" aria-label="Map of Mumbai and New Delhi"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([20.5937, 78.9629], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19
+    }).addTo(map);
+
+    L.marker([18.975, 72.8258]).addTo(map).bindPopup('University of Mumbai');
+    L.marker([18.9218, 72.8347]).addTo(map).bindPopup('Gateway of India');
+    L.marker([28.6139, 77.2090]).addTo(map).bindPopup('New Delhi');
+  </script>
+
+  <footer style="text-align:center; font-size:14px; color:#555; margin-top:20px;">
+    <hr><p>Shivam Yadav</p><hr>
+  </footer>
+</body>
+</html>
+
+#################################################################
+
+< gpp html>
+<html>
+<head>
+  <title>Practical 10</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    #map { height: 600px; }
+    footer { text-align: center; margin: 20px 0; font-size: 14px; color: #555; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Leaflet WMS Example - Mumbai</h2>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map', { crs: L.CRS.EPSG4326 }).setView([19.0760, 72.8777], 9);
+
+    var base = 'http://ows.mundialis.de/services/service?';
+    var basemaps = {
+      "Topography": L.tileLayer.wms(base, { layers: 'TOPO-WMS' }),
+      "Places": L.tileLayer.wms(base, { layers: 'OSM-Overlay-WMS' }),
+      "Topography, then places": L.tileLayer.wms(base, { layers: 'TOPO-WMS,OSM-Overlay-WMS' }),
+      "Places, then topography": L.tileLayer.wms(base, { layers: 'OSM-Overlay-WMS,TOPO-WMS' })
+    };
+
+    L.control.layers(basemaps).addTo(map);
+    basemaps["Topography"].addTo(map);
+  </script>
+
+  <footer>
+    <p style="background-color:lightseagreen;">Shivam Yadav !!</p><hr>
+  </footer>
+</body>
+</html>
+
+
+
